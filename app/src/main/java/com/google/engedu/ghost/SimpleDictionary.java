@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class SimpleDictionary implements GhostDictionary {
     private ArrayList<String> words;
+    private ArrayList<String> goodWords;
 
     public SimpleDictionary(InputStream wordListStream) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(wordListStream));
@@ -40,7 +41,27 @@ public class SimpleDictionary implements GhostDictionary {
 
     @Override
     public String getGoodWordStartingWith(String prefix) {
-        return null;
+        if(prefix==null){
+            Random random = new Random();
+            int n= random.nextInt(words.size());
+            return words.get(n);
+        }else{
+            int len=prefix.length(),size;
+            goodWords=new ArrayList<>();
+            String result=binarySearchToFindWord(prefix,0,words.size()-1);
+            if(result==null){
+                return null;
+            }else {
+                while(result.substring(0,prefix.length()).equals(prefix)){
+                    size=result.length();
+                    if ((len % 2 == 0 && size%2 ==0)||(len%2!=0 && size%2!=0)) {
+                        goodWords.add(result);
+                    }
+                    result = words.get(words.indexOf(result)+1);
+                }
+                return goodWords.get(goodWords.size()-1);
+            }
+        }
     }
 
     private String binarySearchToFindWord(String prefix,int beg,int end){

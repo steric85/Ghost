@@ -99,7 +99,7 @@ public class GhostActivity extends ActionBarActivity {
             label.setText("Computer Wins");
         }
         else{
-            String word =simple_fast_dictionary.getAnyWordStartingWith(temp_text);
+            String word =simple_fast_dictionary.getGoodWordStartingWith(temp_text);
 
             if(word==null){
                 Toast.makeText(GhostActivity.this,"Computer Wins",Toast.LENGTH_SHORT).show();
