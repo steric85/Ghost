@@ -27,8 +27,8 @@ public class GhostActivity extends ActionBarActivity {
     private TextView tvGhostText,label;
 
     private InputStream is=null;
-    private SimpleDictionary simple_fast_dictionary;
-    //private FastDictionary simple_fast_dictionary;
+//    private SimpleDictionary simple_fast_dictionary;
+    private FastDictionary simple_fast_dictionary;
 
 
     @Override
@@ -58,8 +58,8 @@ public class GhostActivity extends ActionBarActivity {
 
         try {
             is = getAssets().open("words.txt");
-            simple_fast_dictionary = new SimpleDictionary(is);
-//            simple_fast_dictionary = new FastDictionary(is);
+//            simple_fast_dictionary = new SimpleDictionary(is);
+            simple_fast_dictionary = new FastDictionary(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
